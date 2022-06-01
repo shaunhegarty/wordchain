@@ -1,1 +1,1 @@
-from .wordchain import WordChain
+from .wordchain import WordChainer, WordGraph
