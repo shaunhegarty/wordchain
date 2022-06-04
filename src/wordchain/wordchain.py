@@ -9,9 +9,9 @@ from wordchain.errors import LengthMismatchException
 class WordGraph:
     """ This class builds a graph of words which differ by only one letter.
 
-        - **parameters**
+    - **parameters**
 
-            :param word_list: a list of strings all of the same length"""
+        :param word_list: a list of strings all of the same length"""
 
     def __init__(self, word_list):
 
@@ -51,5 +51,11 @@ class WordChainer:
         self.word_graph = WordGraph(word_list)
         self.nx_graph = nx.DiGraph(self.word_graph.get_graph())
 
+    @classmethod
+    def from_file(cls, filename):
+        with open(filename) as file:
+            word_list = [line.strip() for line in file]
+        return cls(word_list=word_list)
+
     def get_chains(self, start_word, end_word):
-        return [p for p in nx.all_shortest_paths(self.nx_graph, start_word, end_word)]
+        return [tuple(p) for p in nx.all_shortest_paths(self.nx_graph, start_word, end_word)]
