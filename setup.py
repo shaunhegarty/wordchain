@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="wordchain",
+    name="python-wordchain",
     version="0.2.2",
     author="Shaun Hegarty",
     author_email="shaunhegarty@proton.me",
