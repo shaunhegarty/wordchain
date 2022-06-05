@@ -5,7 +5,6 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="python-wordchain",
-    version="0.2.2",
     author="Shaun Hegarty",
     author_email="shaunhegarty@proton.me",
     description="A small package for building word chains",
