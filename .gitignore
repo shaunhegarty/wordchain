@@ -2,3 +2,4 @@
 .pylintrc
 Dockerfile.dev
 *.pyc
+.vscode
