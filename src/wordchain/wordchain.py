@@ -69,7 +69,7 @@ class WordChainer:
         self.word_list = word_list
         self.word_graph = WordGraph(word_list)
         self.nx_graph = nx.DiGraph(self.word_graph.get_graph())
-
+    
     @classmethod
     def from_file(cls, filename):
         with open(filename, encoding='utf8') as file:
@@ -101,3 +101,6 @@ class WordChain:
 
     def __iter__(self) -> Generator:
         return (p for p in self.paths)
+    
+    def __repr__(self) -> str:
+        return str(list(self.paths))
