@@ -6,12 +6,11 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Upload Python Package
+name: Upload Python Package to PyPi
 
-on: [push]
-# on:
-#   release:
-#     types: [published]
+on:
+  release:
+    types: [published]
 
 permissions:
   contents: read
@@ -21,7 +20,7 @@ jobs:
 
     runs-on: ubuntu-latest
     environment: build
-    
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
@@ -38,5 +37,5 @@ jobs:
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
         user: __token__
-        password: ${{ secrets.PYPITEST }}
+        password: ${{ secrets.PYPI }}
         repository_url: https://test.pypi.org/legacy/

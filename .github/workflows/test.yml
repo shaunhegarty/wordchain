@@ -1,4 +1,4 @@
-name: Python package
+name: Run Tests in Different Python Environments
 
 on: [push]
 
