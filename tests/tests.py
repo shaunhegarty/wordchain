@@ -1,6 +1,6 @@
 import pytest
 
-from wordchain.wordchain import WordChainer, WordGraph
+from wordchain.wordchain import WordChainer, WordGraph, WordChainerCollection
 from wordchain import errors
 
 WORD_LIST = ["bird", "bind", "bord", "bond", "bong", "song"]
@@ -32,6 +32,20 @@ def test_word_chain():
     }
 
 
+def test_no_word_chain():
+    """WordChain should take list of words and build the graph. Get empty list if no chain exists"""
+    chainer = WordChainer(word_list=WORD_LIST)
+    chains = chainer.get_chains("bird", "abcd")
+    assert chains.paths == set()
+
+
+def test_mismatch_word_chain():
+    """WordChain should take list of words and build the graph. Get empty list if no chain exists"""
+    chainer = WordChainer(word_list=WORD_LIST)
+    with pytest.raises(errors.LengthMismatchException):
+        chainer.get_chains("birds", "song")
+
+
 def test_word_chain_fails_when_words_have_different_lengths():
     """WordChain should raise an exception when words of different lengths are provided"""
     word_list = ["hello", "goodbye"]
@@ -51,3 +65,15 @@ def test_rubbish_chain_from_file():
     """WordChain should raise exception due to getting rubbish"""
     with pytest.raises(errors.NonAlphaException):
         WordChainer.from_file("tests/files/rubbish.txt")
+
+
+MIXED_WORD_LIST = ["man", "apt", "oat", "mat", "ape", "opt"] + WORD_LIST
+
+
+def test_word_chain_collection():
+    wcc = WordChainerCollection(word_list=MIXED_WORD_LIST)
+    assert set(wcc.word_lists.keys()) == {3, 4}
+    assert set(wcc.word_chainers.keys()) == {3, 4}
+
+    assert ("ape", "apt", "opt", "oat", "mat", "man") in wcc.get_chains("ape", "man")
+    assert ("bird", "bind", "bond", "bong", "song") in wcc.get_chains("bird", "song")
