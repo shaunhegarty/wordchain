@@ -1,3 +1,5 @@
+![Tests Passing](https://github.com/shaunhegarty/wordchain/actions/workflows/test.yml/badge.svg)
+
 # Word Chain
 
 A package to build word chains from a given list of words. 
