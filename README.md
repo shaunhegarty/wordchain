@@ -28,7 +28,7 @@ This yields:
 ## Testing
 Running the test suite from repository root:
 ```
-pylint -v tests/tests.py
+pytest -v tests/tests.py
 ```
 
 Run tests using docker and tox:
