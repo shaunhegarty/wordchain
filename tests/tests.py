@@ -1,6 +1,6 @@
 import pytest
 
-from wordchain import WordChainer, WordGraph
+from wordchain.wordchain import WordChainer, WordGraph
 from wordchain import errors
 
 WORD_LIST = ["bird", "bind", "bord", "bond", "bong", "song"]
