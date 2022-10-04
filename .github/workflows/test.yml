@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9"]
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,4 +26,9 @@ jobs:
           pip install -e .
       - name: Run tests with pytest
         run: |
-          pytest -v tests/tests.py
+          pytest -v tests/tests.py --junitxml=results/wordchain/test.xml
+      - name: Create test summary
+        uses: test-summary/action@dist
+        with:
+          paths: results/**/*.xml
+        if: always()
