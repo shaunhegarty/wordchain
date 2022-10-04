@@ -1,4 +1,4 @@
-name: Run Tests in Different Python Environments
+name: Tests
 
 on: [push]
 
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10"]
 
     steps:
       - uses: actions/checkout@v3
@@ -28,13 +28,7 @@ jobs:
         run: |
           pytest -v tests/tests.py --junitxml=results/wordchain/test.xml
       - name: Test summary
-        uses: test-summary/action@dist
+        uses: test-summary/action@v1
         with:
           paths: results/**/*.xml
-        if: always()
-      - name: Upload test summary
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-summary
-          path: test-summary.md
         if: always()
