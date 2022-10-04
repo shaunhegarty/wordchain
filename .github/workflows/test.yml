@@ -27,7 +27,7 @@ jobs:
       - name: Run tests with pytest
         run: |
           pytest -v tests/tests.py --junitxml=results/wordchain/test.xml
-      - name: Create test summary
+      - name: Test summary
         uses: test-summary/action@dist
         with:
           paths: results/**/*.xml
