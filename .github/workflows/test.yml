@@ -29,17 +29,20 @@ jobs:
           coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml && coverage xml
       - name: Test Report
         uses: dorny/test-reporter@v1
-        if: always()    # run this step even if previous step failed
+        if: always()    
         with:
-          name: Tests            # Name of the check run which will be created
-          path: results/wordchain/test.xml    # Path to test results
+          name: Tests            
+          path: results/wordchain/test.xml
           reporter: java-junit 
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
           badge: true
+          filename: coverage/coverage.xml
+          fail_below_min: true
           format: markdown
           indicators: true
+          hide_branch_rate: false
+          hide_complexity: true
           output: both
-          filename: coverage/coverage.xml
           thresholds: '60 80'
