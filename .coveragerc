@@ -3,4 +3,4 @@ branch = true
 source = .
 
 [xml]
-output = coverage.xml
+output = coverage/coverage.xml

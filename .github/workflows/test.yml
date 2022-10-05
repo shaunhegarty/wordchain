@@ -27,11 +27,6 @@ jobs:
       - name: Run tests with pytest
         run: |
           coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml && coverage xml
-      - name: Test summary
-        uses: test-summary/action@v1
-        with:
-          paths: results/**/*.xml
-        if: always()
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: always()    # run this step even if previous step failed
@@ -42,4 +37,7 @@ jobs:
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: coverage.xml
+          badge: rtue
+          format: markdown
+          indicators: true
+          filename: coverage/coverage.xml
