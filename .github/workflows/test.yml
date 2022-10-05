@@ -40,4 +40,6 @@ jobs:
           badge: true
           format: markdown
           indicators: true
+          output: both
           filename: coverage/coverage.xml
+          thresholds: '60 80'
