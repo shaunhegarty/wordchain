@@ -26,7 +26,7 @@ jobs:
           pip install -e .
       - name: Run tests with pytest
         run: |
-          coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml
+          coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml && coverage xml
       - name: Test summary
         uses: test-summary/action@v1
         with:
