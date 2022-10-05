@@ -26,7 +26,7 @@ jobs:
           pip install -e .
       - name: Run tests with pytest
         run: |
-          pytest -v tests/tests.py --junitxml=results/wordchain/test.xml
+          coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml
       - name: Test summary
         uses: test-summary/action@v1
         with:
@@ -39,3 +39,7 @@ jobs:
           name: Tests            # Name of the check run which will be created
           path: results/wordchain/test.xml    # Path to test results
           reporter: java-junit 
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage.cobertura.xml

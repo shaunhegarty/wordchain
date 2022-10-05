@@ -1,0 +1,6 @@
+[run]
+branch = true
+
+[xml]
+directory = results/coverage
+source = .
