@@ -1,6 +1,6 @@
 [run]
 branch = true
+source = .
 
 [xml]
-output = results/coverage.xml
-source = .
+output = coverage.xml
