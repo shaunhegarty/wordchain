@@ -129,7 +129,7 @@ class WordChain:
         return (p for p in self.paths)
 
     def __repr__(self) -> str:
-        return str(list(self.paths))
+        return f'WordChain({self.start_word}, {self.end_word}, {self.paths})'
 
 
 class WordChainerCollection:

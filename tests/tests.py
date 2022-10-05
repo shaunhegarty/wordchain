@@ -22,6 +22,12 @@ def test_word_no_neighbours():
     assert len(neighbours) == 0
 
 
+def test_str_repr():
+    """Case with no neighbours should be handled gracefully"""
+    word_graph = WordGraph(WORD_LIST)
+    assert "Word Graph: 4 letter words. 6 words." == str(word_graph)
+
+
 def test_word_chain():
     """WordChain should take list of words and build the graph"""
     chainer = WordChainer(word_list=WORD_LIST)
@@ -30,6 +36,9 @@ def test_word_chain():
         ("bird", "bind", "bond", "bong", "song"),
         ("bird", "bord", "bond", "bong", "song"),
     }
+    assert chains.path_count == 2
+    for path in chains:
+        assert len(path) == 5
 
 
 def test_no_word_chain():
@@ -77,3 +86,4 @@ def test_word_chain_collection():
 
     assert ("ape", "apt", "opt", "oat", "mat", "man") in wcc.get_chains("ape", "man")
     assert ("bird", "bind", "bond", "bong", "song") in wcc.get_chains("bird", "song")
+    assert len(wcc.get_chains("bride", "groom").paths) == 0
