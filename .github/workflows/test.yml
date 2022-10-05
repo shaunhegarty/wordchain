@@ -44,5 +44,7 @@ jobs:
           indicators: true
           hide_branch_rate: false
           hide_complexity: true
-          output: both
+          output: file
           thresholds: '60 80'
+      - name: Code Coverage Markdown
+        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
