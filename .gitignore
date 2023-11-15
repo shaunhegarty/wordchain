@@ -8,3 +8,5 @@ src/*wordchain.egg-info/
 .pylintrc
 Dockerfile.dev
 .vscode
+.coverage
+*.xml

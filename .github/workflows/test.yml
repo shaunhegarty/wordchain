@@ -1,4 +1,4 @@
-name: Run Tests in Different Python Environments
+name: Tests
 
 on: [push]
 
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,4 +26,25 @@ jobs:
           pip install -e .
       - name: Run tests with pytest
         run: |
-          pytest -v tests/tests.py
+          coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml && coverage xml
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()    
+        with:
+          name: Tests            
+          path: results/wordchain/test.xml
+          reporter: java-junit 
+      - name: Code Coverage Summary Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          badge: true
+          filename: coverage/coverage.xml
+          fail_below_min: true
+          format: markdown
+          indicators: true
+          hide_branch_rate: false
+          hide_complexity: true
+          output: file
+          thresholds: '60 80'
+      - name: Code Coverage Markdown
+        run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY

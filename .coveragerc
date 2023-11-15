@@ -1,0 +1,6 @@
+[run]
+branch = true
+source = src/wordchain
+
+[xml]
+output = coverage/coverage.xml

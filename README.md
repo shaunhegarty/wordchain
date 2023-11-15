@@ -2,6 +2,8 @@
 
 A package to build word chains from a given list of words. 
 
+[![Tests](https://github.com/shaunhegarty/wordchain/actions/workflows/test.yml/badge.svg)](https://github.com/shaunhegarty/wordchain/actions/workflows/test.yml)
+
 ## Installation
 ```
 pip install python-wordchain
