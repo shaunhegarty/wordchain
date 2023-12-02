@@ -8,5 +8,3 @@ jobs:
     steps:
       - name: Run Mypy
         uses: jpetrucciani/mypy-check@master
-        with:
-          mypy_flags: '--config-file .mypy.ini'
