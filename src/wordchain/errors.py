@@ -4,3 +4,7 @@ class LengthMismatchException(Exception):
 
 class NonAlphaException(Exception):
     pass
+
+
+class EmptyWordListException(Exception):
+    pass

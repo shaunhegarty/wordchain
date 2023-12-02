@@ -1,1 +1,8 @@
-__version__ = "0.3.2"
+# ruff: noqa: F401
+
+from wordchain.wordchain import (
+    WordChain,
+    WordChainer,
+    WordChainerCollection,
+    WordGraph,
+)
