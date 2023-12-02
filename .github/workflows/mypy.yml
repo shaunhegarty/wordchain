@@ -1,12 +1,12 @@
-uses: jpetrucciani/mypy-check@master
+name: Static Analysis
 
-# or specify a path!
-uses: jpetrucciani/mypy-check@master
-with:
-  path: '.'
+on: [push]
 
-
-# or specify additional mypy flags!
-uses: jpetrucciani/mypy-check@master
-with:
-  mypy_flags: '--config-file .mypy.ini'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Mypy
+        uses: jpetrucciani/mypy-check@master
+        with:
+          mypy_flags: '--config-file .mypy.ini'
