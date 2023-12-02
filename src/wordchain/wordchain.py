@@ -1,7 +1,7 @@
 """ This module contains the core classes for working with WordChains"""
 
 import string
-from typing import Collection, Generator
+from typing import Collection, Generator, List, Tuple
 
 import networkx as nx
 
@@ -15,7 +15,7 @@ class WordGraph:
 
         :param word_list: a list of strings all of the same length"""
 
-    def __init__(self, word_list: list[str]) -> None:
+    def __init__(self, word_list: List[str]) -> None:
         if len(word_list) == 0:
             raise errors.EmptyWordListException(
                 "Word list must contain at least one word"
@@ -31,25 +31,25 @@ class WordGraph:
                 raise errors.LengthMismatchException
         self.word_length: int = length
         self.word_list = set(word_list)
-        self.graph: dict[str, list[str]] = {}
+        self.graph: dict[str, List[str]] = {}
 
     def __str__(self):
         return (
             f"Word Graph: {self.word_length} letter words. {len(self.word_list)} words."
         )
 
-    def get_graph(self) -> dict[str, list[str]]:
+    def get_graph(self) -> dict[str, List[str]]:
         """Get graph stored on object. Builds it if not available."""
         if not self.graph:
             self.build_word_graph()
         return self.graph
 
-    def build_word_graph(self) -> dict[str, list[str]]:
+    def build_word_graph(self) -> dict[str, List[str]]:
         """Build word graph of words which differ by one letter"""
         self.graph = {word: self.neighbours(word) for word in self.word_list}
         return self.graph
 
-    def neighbours(self, word: str) -> list[str]:
+    def neighbours(self, word: str) -> List[str]:
         """Get list of words which differ by one letter from argument word"""
         nn_list = set()
         for index in range(len(word)):
@@ -70,7 +70,7 @@ class WordChainer:
 
         :param word_list: a list of strings all of the same length"""
 
-    def __init__(self, word_list: list[str]) -> None:
+    def __init__(self, word_list: List[str]) -> None:
         self.word_graph: WordGraph = WordGraph(word_list)
         self.nx_graph: nx.DiGraph = nx.DiGraph(self.word_graph.get_graph())
 
@@ -109,11 +109,11 @@ class WordChain:
     """Sequence-like object that holds the paths and other minor utilities"""
 
     def __init__(
-        self, start_word: str, end_word: str, paths: Collection[tuple[str, ...]]
+        self, start_word: str, end_word: str, paths: Collection[Tuple[str, ...]]
     ):
         self.start_word = start_word
         self.end_word = end_word
-        self.paths: Collection[tuple[str, ...]] = {tuple(p) for p in paths}
+        self.paths: Collection[Tuple[str, ...]] = {tuple(p) for p in paths}
 
     @classmethod
     def empty(cls):
@@ -124,7 +124,7 @@ class WordChain:
         """Number of paths of the shortest possible distance between start_word and end_word"""
         return len(self.paths)
 
-    def __contains__(self, path: tuple[str]) -> bool:
+    def __contains__(self, path: Tuple[str]) -> bool:
         return path in self.paths
 
     def __iter__(self) -> Generator:
