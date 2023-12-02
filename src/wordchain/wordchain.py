@@ -1,7 +1,7 @@
 """ This module contains the core classes for working with WordChains"""
 
 import string
-from typing import Collection, Generator, List, Tuple
+from typing import Collection, Generator, List, Tuple, Dict
 
 import networkx as nx
 
@@ -31,20 +31,20 @@ class WordGraph:
                 raise errors.LengthMismatchException
         self.word_length: int = length
         self.word_list = set(word_list)
-        self.graph: dict[str, List[str]] = {}
+        self.graph: Dict[str, List[str]] = {}
 
     def __str__(self):
         return (
             f"Word Graph: {self.word_length} letter words. {len(self.word_list)} words."
         )
 
-    def get_graph(self) -> dict[str, List[str]]:
+    def get_graph(self) -> Dict[str, List[str]]:
         """Get graph stored on object. Builds it if not available."""
         if not self.graph:
             self.build_word_graph()
         return self.graph
 
-    def build_word_graph(self) -> dict[str, List[str]]:
+    def build_word_graph(self) -> Dict[str, List[str]]:
         """Build word graph of words which differ by one letter"""
         self.graph = {word: self.neighbours(word) for word in self.word_list}
         return self.graph
