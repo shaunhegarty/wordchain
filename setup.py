@@ -17,6 +17,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     package_dir={"": "src"},
+    package_data={"python-wordchain": ["py.typed"]},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.6",
 )
