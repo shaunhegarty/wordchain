@@ -1,4 +1,4 @@
-# ruff: noqa: F401
+# ruff: noqa: D104, F401
 
 
 from wordchain.wordchain import (
