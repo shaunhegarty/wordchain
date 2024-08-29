@@ -56,7 +56,7 @@ class WordGraph:
         nn_list = set()
         for index in range(len(word)):
             for letter in string.ascii_lowercase:
-                neighbour_word = f"{word[:index]}{letter}{word[index + 1:]}"
+                neighbour_word = f"{word[:index]}{letter}{word[index + 1 :]}"
                 if neighbour_word in self.word_list:
                     nn_list.add(neighbour_word)
         if word in nn_list:
@@ -138,10 +138,10 @@ class WordChain:
 class WordChainerCollection:
     """Convenience class for working with multiple word lengths."""
 
-    def __init__(self, word_list: list[str]) -> None:
+    def __init__(self, word_list: List[str]) -> None:
         self.original_list = list(word_list)
 
-        self.word_lists: Dict[int, list[str]] = {}
+        self.word_lists: Dict[int, List[str]] = {}
         for word in word_list:
             self.word_lists.setdefault(len(word), []).append(word)
         self.word_chainers = {
@@ -149,7 +149,7 @@ class WordChainerCollection:
             for length, words in self.word_lists.items()
         }
 
-    def get_word_list(self, word_length: int) -> list[str]:
+    def get_word_list(self, word_length: int) -> List[str]:
         """Get list of words of a given length."""
         return self.word_lists.get(word_length, [])
 
