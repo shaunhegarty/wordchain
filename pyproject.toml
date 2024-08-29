@@ -1,7 +1,7 @@
 [project]
-name = "wordchain"
+name = "python-wordchain"
 version = "0.4.2"
-description = "Add your description here"
+description = "A package to build word chains from a given list of words."
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
