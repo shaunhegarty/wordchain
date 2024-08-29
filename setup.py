@@ -19,5 +19,5 @@ setuptools.setup(
     package_dir={"": "src"},
     package_data={"python-wordchain": ["py.typed"]},
     packages=setuptools.find_packages(where="src"),
-    python_requires=">=3.6",
+    python_requires=">=3.8",
 )
