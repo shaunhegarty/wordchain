@@ -1,3 +1,6 @@
+# ruff: noqa: D100, D101
+
+
 class LengthMismatchException(Exception):
     pass
 
