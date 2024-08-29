@@ -22,7 +22,7 @@ jobs:
           uv sync
       - name: Run tests with pytest
         run: |
-          uv run coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml && coverage xml
+          uv run coverage run -m pytest -v tests/tests.py --junitxml=results/wordchain/test.xml && uv run coverage xml
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: always()    
