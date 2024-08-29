@@ -40,7 +40,7 @@ select = ["D", "E4", "E7", "E9", "F"]
 
 # On top of the Google convention, disable `D417`, which requires
 # documentation for every function parameter.
-ignore = ["D417"]
+ignore = ["D100", "D104", "D417"]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]

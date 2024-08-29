@@ -1,5 +1,6 @@
 # ruff: noqa: D100
 import pytest
+
 from wordchain import errors
 from wordchain.wordchain import WordChainer, WordChainerCollection, WordGraph
 
